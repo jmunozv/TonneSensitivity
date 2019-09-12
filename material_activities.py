@@ -69,7 +69,7 @@ material_activity = {
 
     # Optimistic values corresponding to the best scenario we
     # can imagine by the time Next-Tonne is build.
-    'probable': {
+    'optimistic': {
         'Copper': {
             'Tl208':  1.47e-3 * units.mBq / units.kg,
             'Bi214': 12.00e-3 * units.mBq / units.kg

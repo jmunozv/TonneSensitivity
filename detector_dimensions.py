@@ -43,9 +43,9 @@ detector_dimensions = {
 }
 
 # Dimensions "hard-wired" in the code
-CATHODE_THICKNESS = 5.0 * units.mm
-ANODE_THICKNESS   = 1.5 * units.cm
-READOUT_GAP       = 5.0 * units.mm
+CATHODE_THICKNESS = 0.25 * units.mm
+ANODE_THICKNESS   = 1.5  * units.cm
+READOUT_GAP       = 5.0  * units.mm
 
 
 #####################################################################

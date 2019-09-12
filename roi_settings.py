@@ -14,13 +14,13 @@ import invisible_cities.core.system_of_units as units
 ### In principle, it is common for any experiment or spatialDef
 roi_settings = {
     0.5: {
-        'Emin': 2452 * units.keV,
-        'Emax': 2464 * units.keV
+        'Emin': 2454 * units.keV,
+        'Emax': 2471 * units.keV
     },
 
     0.7: {
-        'Emin': 2449 * units.keV,
-        'Emax': 2466 * units.keV
+        'Emin': 2453 * units.keV,
+        'Emax': 2475 * units.keV
     },
 
     1.0: {
