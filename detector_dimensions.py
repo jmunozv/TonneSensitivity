@@ -52,6 +52,7 @@ READOUT_GAP       = 5.0  * units.mm
 ### Material densities
 Xe_density          =   89. * units.kg / units.m3  # 15 bar & 300 kelvin
 HDPE_density        =  970. * units.kg / units.m3
+Teflon_density      = 2200. * units.kg / units.m3
 Copper_density      = 8960. * units.kg / units.m3
 SSteel316Ti_density = 7990. * units.kg / units.m3
 
@@ -90,7 +91,7 @@ def get_dimensions(det_name: str) -> Dict[str, float]:
                                          dimensions['FIELD_CAGE_innerRad']**2) * \
                                         dimensions['FIELD_CAGE_length'] * math.pi
 
-    dimensions['FIELD_CAGE_mass']     = dimensions['FIELD_CAGE_volume'] * HDPE_density
+    dimensions['FIELD_CAGE_mass']     = dimensions['FIELD_CAGE_volume'] * Teflon_density
 
 
     ### Adding 'ICS' derived dimensions
@@ -151,7 +152,7 @@ def print_dimensions(det_name: str) -> None:
     print('  ACTIVE mass     = {:.4} kg'   .format(dimensions['ACTIVE_mass']/units.kg))
     
     print("\n* READOUT_PLANE")
-    print('  READOUT_PLANE Surface = {:.4} cm**2'.format(dimensions['READOUT_PLANE_surface']/units.cm2))
+    print('  READOUT_PLANE Surface (1) = {:.4} cm**2'.format(dimensions['READOUT_PLANE_surface']/units.cm2))
 
     print("\n* CATHODE")
     print('  CATHODE Volume = {:.4} cm**3'.format(dimensions['CATHODE_volume']/units.cm3))

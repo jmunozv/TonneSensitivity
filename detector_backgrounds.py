@@ -39,8 +39,8 @@ def get_background_level(det_name: str,
         },
 
         'FIELD_CAGE': {
-            'Tl208': det_dim['FIELD_CAGE_mass'] * mat_act['HDPE']['Tl208'],
-            'Bi214': det_dim['FIELD_CAGE_mass'] * mat_act['HDPE']['Bi214']
+            'Tl208': det_dim['FIELD_CAGE_mass'] * mat_act['Teflon']['Tl208'],
+            'Bi214': det_dim['FIELD_CAGE_mass'] * mat_act['Teflon']['Bi214']
         },
         
         'INNER_SHIELDING': {
