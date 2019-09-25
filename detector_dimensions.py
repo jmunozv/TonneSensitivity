@@ -46,6 +46,9 @@ detector_dimensions = {
 CATHODE_THICKNESS = 0.25 * units.mm
 ANODE_THICKNESS   = 1.5  * units.cm
 READOUT_GAP       = 5.0  * units.mm
+WATER_THICKNESS   = 3.0  * units.m
+TANK_THICKNESS    = 1.0  * units.cm
+MUON_EXTRA_RAD    = 50.0 * units.cm
 
 
 #####################################################################
@@ -133,7 +136,21 @@ def get_dimensions(det_name: str) -> Dict[str, float]:
     dimensions['VESSEL_mass']        = dimensions['VESSEL_volume'] * SSteel316Ti_density
 
 
+    ### Adding 'TANK' derived dimensions
+    detector_diam = dimensions['ACTIVE_diam'] + 2 * dimensions['FIELD_CAGE_thickness'] + \
+                    2 * dimensions['ICS_thickness'] + 2 * dimensions['VESSEL_thickness']
+
+    detector_length = dimensions['ACTIVE_length'] + 2 * ANODE_THICKNESS + 2 * READOUT_GAP + \
+                      2 * dimensions['ICS_thickness'] + 2 * dimensions['HOLLOWS_width'] + \
+                      2 * dimensions['VESSEL_thickness']
+    
+    dimensions['TANK_outerDiam']  = max(detector_length, detector_diam) + \
+                                    2. * WATER_THICKNESS + 2. * TANK_THICKNESS
+    dimensions['TANK_topSurface'] = (dimensions['TANK_outerDiam']/2)**2 * math.pi
+    dimensions['MUON_surface']   = (dimensions['TANK_outerDiam'] + 2 * MUON_EXTRA_RAD)**2
+
     return dimensions
+
 
 
 #####################################################################
@@ -189,4 +206,9 @@ def print_dimensions(det_name: str) -> None:
     print('  VESSEL Volume       = {:.4} cm**3'.format(dimensions['VESSEL_volume']/units.cm3))
     print('  VESSEL Mass         = {:.4} kg'   .format(dimensions['VESSEL_mass']/units.kg))
 
+    print("\n* TANK")
+    print('  TANK Outer Diam     = {:.4} cm'   .format(dimensions['TANK_outerDiam']/units.cm))
+    print('  TANK Top Surface    = {:.4} cm**2'.format(dimensions['TANK_topSurface']/units.cm2))
+    print('  MUON Surface        = {:.4} cm**2'.format(dimensions['MUON_surface']/units.cm2))
 
+    
