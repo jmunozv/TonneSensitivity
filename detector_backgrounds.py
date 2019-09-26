@@ -17,6 +17,7 @@ from initial_activities import get_muon_flux
 from initial_activities import get_muon_flux_error
 
 from muons.xe137_normalization import xe137_normalization
+#from muons.xe137_normalization import get_xe137_activation_prob
     
 
 #####################################################################
@@ -24,8 +25,7 @@ def get_radiogenic_background_level(det_name               : str,
                                     radiogenic_bkgnd_level : str
                                    )                      -> pd.DataFrame:
     '''
-    It returns the detector background levels for every component and isotope
-    as a dictionary.
+    It returns the detector background levels for every component and isotope as a dictionary.
     In principle, only 'READOUT_PLANES', 'CATHODE', 'FIELD_CAGE' and 'INNER_SHIELDING' are considered.
     '''
 
@@ -70,7 +70,6 @@ def get_radon_background_level(det_name          : str,
                               )                 -> float:
     '''
     It returns the detector background level expected from the radon contamination
-    In principle, only 'READOUT_PLANES', 'CATHODE', 'FIELD_CAGE' and 'INNER_SHIELDING' are considered.
     '''
 
     radon_act = get_radon_activity(radon_bkgnd_level)
@@ -82,10 +81,7 @@ def get_radon_background_level(det_name          : str,
     # Any other case, radon activity comes as an activity per surface unit
     else:
         det_dim = get_dimensions(det_name)
-        tot_surface = det_dim['READOUT_PLANE_surface'] * 2 + \
-                      math.pi * det_dim['ACTIVE_diam'] * det_dim['ACTIVE_length']
-        radon_background = tot_surface * radon_act
-
+        radon_background = radon_act * det_dim['ACTIVE_surface']
     return radon_background
 
 
@@ -105,6 +101,9 @@ def get_muon_background_level(det_name    : str,
     generate_muon_config_file(det_name, hosting_lab, muon_flux, muon_flux_error, muon_surface)
     
     Xe137_background = xe137_normalization(['dummy', 'muons.conf'], suppress_df = True)
+    
+    #xe137_act_prob = get_xe137_activation_prob()
+    #print(f"Xe137_activation_prob = {xe137_act_prob}")
     
     return Xe137_background
 
@@ -151,13 +150,13 @@ n_simulated_muons = {num_muons}
 
 bin_edges = {bins_set}
 
-lab_flux     = {muon_flux * units.cm2 * units.second}
-lab_flux_err = {muon_flux_error * units.cm2 * units.second}
+lab_flux     = {muon_flux * units.cm2 * units.second:8.4}
+lab_flux_err = {muon_flux_error * units.cm2 * units.second:8.4}
 
-gen_area     = {muon_surface / units.cm2}
+gen_area     = {muon_surface / units.cm2:8.4}
     '''
     
-    print(file_text)
+    # print(file_text)
 
     # Writing 'muons.conf' file
     muons_conf_file = open('muons.conf', 'w')

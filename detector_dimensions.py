@@ -69,6 +69,9 @@ def get_dimensions(det_name: str) -> Dict[str, float]:
     dimensions = detector_dimensions[det_name]
 
     ### Adding 'ACTIVE' derived dimensions
+    dimensions['ACTIVE_surface'] = (dimensions['ACTIVE_diam']/2)**2 * math.pi * 2 + \
+                                   math.pi * dimensions['ACTIVE_diam'] * dimensions['ACTIVE_length']
+
     dimensions['ACTIVE_volume'] = (dimensions['ACTIVE_diam']/2)**2 * \
                                   math.pi * dimensions['ACTIVE_length']
 
@@ -165,6 +168,7 @@ def print_dimensions(det_name: str) -> None:
     print("\n* ACTIVE")
     print('  ACTIVE Diameter = {:.4} cm'   .format(dimensions['ACTIVE_diam']/units.cm))
     print('  ACTIVE Length   = {:.4} cm'   .format(dimensions['ACTIVE_length']/units.cm))
+    print('  ACTIVE Surface  = {:.4} cm**2'.format(dimensions['ACTIVE_surface']/units.cm2))
     print('  ACTIVE Volume   = {:.4} cm**3'.format(dimensions['ACTIVE_volume']/units.cm3))
     print('  ACTIVE mass     = {:.4} kg'   .format(dimensions['ACTIVE_mass']/units.kg))
     
