@@ -219,13 +219,13 @@ def print_initial_activities(radiogenic_bkgnd_level: str,
         print(f"\n* {material}:")
         for isotope in radiogenic_activities[material].keys():
             if (material == 'DiceBoard'):
-                print("    {}: {:.4} mBq/m**2".format(isotope,
-                                                      radiogenic_activities[material][isotope] \
-                                                      / units.mBq * units.m2))
+                print("    {}: {:8.3e} mBq/m**2".format(isotope,
+                                                        radiogenic_activities[material][isotope] \
+                                                        / units.mBq * units.m2))
             else:
-                print("    {}: {:.4} mBq/kg".format(isotope,
-                                                    radiogenic_activities[material][isotope] \
-                                                    / units.mBq * units.kg))
+                print("    {}: {:8.3e} mBq/kg".format(isotope,
+                                                      radiogenic_activities[material][isotope] \
+                                                      / units.mBq * units.kg))
 
 
     ## Radon activities
@@ -233,14 +233,14 @@ def print_initial_activities(radiogenic_bkgnd_level: str,
 
     print(f"\n\n*** '{radon_bkgnd_level}' RADON ACTIVITY ***")
     if (radon_bkgnd_level == 'optimistic'):    
-        print(f"\n* Radon activity: {radon_activity/units.mBq:.4} mBq")
+        print(f"\n* Radon activity: {radon_activity/units.mBq:8.3e} mBq")
     else:
-        print(f"\n* Radon activity: {radon_activity/units.mBq*units.m2:.4} mBq/m**2")
+        print(f"\n* Radon activity: {radon_activity/units.mBq*units.m2:8.3e} mBq/m**2")
 
         
     ## Muon flux
     muon_flux = get_muon_flux(hosting_lab)
     
     print(f"\n\n*** '{hosting_lab}' MUON FLUX ***")
-    print(f"\n* Muon flux: {muon_flux * units.cm2 * units.second:.4} cm**-2 sec**-1")
+    print(f"\n* Muon flux: {muon_flux * units.cm2 * units.second:8.3e} cm**-2 sec**-1")
 
