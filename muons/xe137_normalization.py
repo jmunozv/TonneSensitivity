@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from invisible_cities.core .configure     import            configure
-from invisible_cities.icaro.hst_functions import shift_to_bin_centers
+#from invisible_cities.icaro.hst_functions import shift_to_bin_centers
 
 
 def xe137_normalization(conf_list, spec_shift = 0,

@@ -33,21 +33,14 @@ radiogenic_activity = {
             # Measurements from PNNL (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=959)
             'Bi214': 2.27e-2 * units.mBq / units.kg,
             'Tl208': 8.23e-3 * units.mBq / units.kg
-        },
-        
-#        'SSteel316Ti': {
-#            # Limits from ActivityAssumptions - V8 internal document.
-#            # (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182)
-#            # From Nironit provider
-#            'Bi214': 4.60e-1 * units.mBq / units.kg,
-#            'Tl208': 4.31e-2 * units.mBq / units.kg
-#        }
+        },        
     },
-
+    
     
     ##### PROBABLE values corresponding to those expected by the time Next-Tonne is build.
-    ##### Copper and Teflon (measurements from PNNL)
-    ##### DiceBoards activity = Current DBs / 10.
+    ##### Copper (measurements from PNNL)
+    ##### Kapton (best measurements made by PNNL  arXiv:1910.04317])
+    ##### Teflon (measurements from Majorana  arXiv:1601.03779)
     'probable': {
         'Copper': {
             # Measurements from PNNL (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=960)
@@ -56,28 +49,21 @@ radiogenic_activity = {
         },
         
         'DiceBoard': {
-            # Limits from ActivityAssumptions - V8 internal document / 10.
-            # (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182)
-            # Current Kapton boards extrapolating from act/unit -> act/m2 (assuming units of 10x10 cm2).
-            'Bi214': 5.785e-1 * units.mBq / units.m2,
-            'Tl208': 8.595e-2 * units.mBq / units.m2
+            # Limits from Majorana: 110 uBq/Kg de U238  +  81 uBq/Kg de Th232  ->
+            # 110 uBq/Kg   de Bi214  +  29.12 uBq/Kg de Tl208
+            # Assuming kapton boards of 0.3 mm thickness & Kapton density = 1.4e3 Kg/m^3  -> 
+            # 46.2 uBq/m^2 de Bi214  +  12.23 uBq/m^2 de Tl208
+            'Bi214': 0.0462  * units.mBq / units.m2,
+            'Tl208': 0.01223 * units.mBq / units.m2
         },
         
         'Teflon': {
-            # Measurements from PNNL (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=959)
-            'Bi214': 2.27e-2 * units.mBq / units.kg,
-            'Tl208': 8.23e-3 * units.mBq / units.kg
+            # Measurements from Majorana (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=959)
+            'Bi214': 4.96e-3 * units.mBq / units.kg,
+            'Tl208': 3.69e-5 * units.mBq / units.kg
         },
-        
-#        'SSteel316Ti': {
-#            # Limits from ActivityAssumptions - V8 internal document.
-#            # (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182)
-#            # From Nironit provider
-#            'Bi214': 4.60e-1 * units.mBq / units.kg,
-#            'Tl208': 4.31e-2 * units.mBq / units.kg
-#        }
     },
-
+    
     
     ##### OPTIMISTIC values corresponding to the best scenario by the time Next-Tonne is build.
     ##### Copper electroformed measured by Majorana (radiopurity.org)
@@ -93,7 +79,7 @@ radiogenic_activity = {
         'DiceBoard': {
             # Limits from ActivityAssumptions - V8 internal document / 20.
             # (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182)
-            # Current Kapton boards extrapolating from act/unit -> act/m2 (assuming units of 10x10 cm2).
+            # Current Kapton boards extrapolating from act/unit -> act/m2 (assuming units of 11x11 cm2).
             'Bi214': 2.893e-1 * units.mBq / units.m2,
             'Tl208': 4.298e-2 * units.mBq / units.m2
         },
@@ -103,14 +89,6 @@ radiogenic_activity = {
             'Bi214': 2.27e-2 * units.mBq / units.kg,
             'Tl208': 8.23e-3 * units.mBq / units.kg
         },
-        
-#        'SSteel316Ti': {
-#            # Limits from ActivityAssumptions - V8 internal document.
-#            # (https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182)
-#            # From Nironit provider
-#            'Bi214': 4.60e-1 * units.mBq / units.kg,
-#            'Tl208': 4.31e-2 * units.mBq / units.kg
-#        }
     }
 }
 
